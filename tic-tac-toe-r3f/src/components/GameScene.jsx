@@ -1,0 +1,37 @@
+import { OrbitControls } from '@react-three/drei'
+import Board from './Board'
+import Player from './Player'
+
+// Ten komponent grupuje wszystko co dzieje się wewnątrz Canvas
+const GameScene = ({ board, turn, onAttemptMark, positions }) => {
+	return (
+		<>
+			<color attach='background' args={['#202025']} />
+
+			<ambientLight intensity={0.5} />
+			<directionalLight position={[5, 10, 5]} intensity={1} castShadow />
+
+			<Board boardState={board} />
+
+			<Player
+				position={positions[0]}
+				color='#4da6ff'
+				controls={{ up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD', jump: 'Space' }}
+				isActive={turn === 'X'}
+				onJumpAttempt={turn === 'X' ? onAttemptMark : () => {}}
+			/>
+
+			<Player
+				position={positions[1]}
+				color='#ff4d4d'
+				controls={{ up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight', jump: 'Enter' }}
+				isActive={turn === 'O'}
+				onJumpAttempt={turn === 'O' ? onAttemptMark : () => {}}
+			/>
+
+			<OrbitControls enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 3} />
+		</>
+	)
+}
+
+export default GameScene
