@@ -11,6 +11,11 @@ const GameScene = ({ board, turn, onAttemptMark, positions }) => {
 			<ambientLight intensity={0.5} />
 			<directionalLight position={[5, 10, 5]} intensity={1} castShadow />
 
+			<mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+				<planeGeometry args={[100, 100]} />
+				<meshStandardMaterial color="#f6d7b0" />
+			</mesh>
+
 			<Board boardState={board} />
 
 			<Player
