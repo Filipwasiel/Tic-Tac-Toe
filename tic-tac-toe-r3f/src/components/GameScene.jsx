@@ -18,7 +18,7 @@ const GameScene = ({ board, turn, onAttemptMark, positions }) => {
 				color='#4da6ff'
 				controls={{ up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD', jump: 'Space' }}
 				isActive={turn === 'X'}
-				onJumpAttempt={turn === 'X' ? onAttemptMark : () => {}}
+				onLand={turn === 'X' ? onAttemptMark : () => {}}
 			/>
 
 			<Player
@@ -26,7 +26,7 @@ const GameScene = ({ board, turn, onAttemptMark, positions }) => {
 				color='#ff4d4d'
 				controls={{ up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight', jump: 'Enter' }}
 				isActive={turn === 'O'}
-				onJumpAttempt={turn === 'O' ? onAttemptMark : () => {}}
+				onLand={turn === 'O' ? onAttemptMark : () => {}}
 			/>
 
 			<OrbitControls enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 3} />

@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { useKeyboard } from '../hooks/useKeyboard'
 import { PLAYER_SPEED, JUMP_FORCE } from '../utils/constants'
 
-const Player = ({ position, color, controls, isActive, onJumpAttempt }) => {
+const Player = ({ position, color, controls, isActive, onLand }) => {
 	const ref = useRef()
 	const keys = useKeyboard()
 
@@ -16,6 +16,9 @@ const Player = ({ position, color, controls, isActive, onJumpAttempt }) => {
 		pos.current.set(...position)
 		velocityY.current = 0
 		isJumping.current = false
+		if (ref.current) {
+			ref.current.position.copy(pos.current)
+		}
 	}, [position])
 
 	useFrame((state, delta) => {
@@ -35,19 +38,20 @@ const Player = ({ position, color, controls, isActive, onJumpAttempt }) => {
 		if (keys[controls.jump] && !isJumping.current) {
 			isJumping.current = true
 			velocityY.current = JUMP_FORCE
-
-			if (isActive) {
-				onJumpAttempt(pos.current.x, pos.current.z)
-			}
 		}
 
 		// Grawitacja
 		if (isJumping.current) {
 			pos.current.y += velocityY.current * delta
-			velocityY.current -= 15 * delta
+			velocityY.current -= 20 * delta
 
 			if (pos.current.y <= 0.5) {
 				pos.current.y = 0.5
+
+				if (isActive) {
+					onLand(pos.current.x, pos.current.z)
+				}
+
 				isJumping.current = false
 				velocityY.current = 0
 			}
