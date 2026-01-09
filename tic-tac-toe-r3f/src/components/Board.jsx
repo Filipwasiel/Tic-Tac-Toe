@@ -11,7 +11,7 @@ const Board = ({ boardState }) => {
 				// Oblicz pozycję na podstawie indeksu
 				const x = (col - 1) * FIELD_SIZE
 				const z = (row - 1) * FIELD_SIZE
-				return <Field key={i} value={val} position={[x, 0.75, z]} />
+				return <Field key={i} value={val} position={[x, 0.60, z]} />
 			})}
 			{/* Dekoracyjna podstawa pod całą planszą */}
 			<mesh position={[0, 0.25, 0]} receiveShadow>

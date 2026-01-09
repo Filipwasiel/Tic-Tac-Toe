@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { SkeletonUtils } from 'three-stdlib'
 import { useKeyboard } from '../hooks/useKeyboard'
 import { PLAYER_SPEED, JUMP_FORCE, BODY_PARTS } from '../utils/constants'
+import Marker from './Marker'
 
 const Player = ({ position, color, controls, isActive, onLand }) => {
 	const { scene } = useThree()
@@ -132,7 +133,7 @@ const Player = ({ position, color, controls, isActive, onLand }) => {
 
 		// Grawitacja
 		pos.current.y += velocityY.current * delta
-		velocityY.current -= 15 * delta
+		velocityY.current -= 13 * delta
 		if (velocityY.current < 0 && pos.current.y <= groundHeight) {
 			pos.current.y = groundHeight
 			velocityY.current = 0
@@ -159,12 +160,7 @@ const Player = ({ position, color, controls, isActive, onLand }) => {
 	return (
 		<group ref={groupRef} position={position} dispose={null}>
 			<primitive ref={modelRef} object={clone} scale={0.5} position={[0, 0, 0]} />
-			{isActive && (
-				<mesh position={[0, 2, 0]}>
-					<coneGeometry args={[0.1, 0.3, 8]} rotation={[Math.PI, 0, 0]} />
-					<meshBasicMaterial color='yellow' />
-				</mesh>
-			)}
+			{isActive && <Marker color='lime' />}
 		</group>
 	)
 }
