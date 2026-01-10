@@ -9,8 +9,8 @@ export default function Game() {
 	const [turn, setTurn] = useState('X')
 	const [winner, setWinner] = useState(null)
 	const [positions, setPositions] = useState([
-		[-3, 0.5, 0],
-		[3, 0.5, 0],
+		[-6, 0, 0],
+		[6, 0, 0],
 	])
 
 	const handleAttemptMark = (x, z) => {

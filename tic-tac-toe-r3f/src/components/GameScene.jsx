@@ -10,18 +10,18 @@ const GameScene = ({ board, turn, onAttemptMark, positions }) => {
 
 			<ambientLight intensity={0.5} />
 			<directionalLight position={[5, 10, 5]} intensity={1} castShadow />
-
+{/*
 			<mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
 				<planeGeometry args={[100, 100]} />
-				<meshStandardMaterial color="#f6d7b0" />
-			</mesh>
+				<meshStandardMaterial color='#f6d7b0' />
+			</mesh> */}
 
 			<Board boardState={board} />
 
 			<Player
 				position={positions[0]}
 				color='#4da6ff'
-				controls={{ up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD', jump: 'Space' }}
+				controls={{ up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD', jump: 'Space', run: 'ShiftLeft' }}
 				isActive={turn === 'X'}
 				onLand={turn === 'X' ? onAttemptMark : () => {}}
 			/>
@@ -29,12 +29,12 @@ const GameScene = ({ board, turn, onAttemptMark, positions }) => {
 			<Player
 				position={positions[1]}
 				color='#ff4d4d'
-				controls={{ up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight', jump: 'Enter' }}
+				controls={{ up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight', jump: 'Enter', run: 'ShiftRight' }}
 				isActive={turn === 'O'}
 				onLand={turn === 'O' ? onAttemptMark : () => {}}
 			/>
 
-			<OrbitControls enableZoom={false} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 3} />
+			<OrbitControls enableZoom={true} minPolarAngle={Math.PI / 4} maxPolarAngle={Math.PI / 3} />
 		</>
 	)
 }

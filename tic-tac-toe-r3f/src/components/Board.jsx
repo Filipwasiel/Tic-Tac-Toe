@@ -15,9 +15,13 @@ const Board = ({ boardState }) => {
 			})}
 			{/* Dekoracyjna podstawa pod całą planszą */}
 			<mesh position={[0, 0.25, 0]} receiveShadow>
-				<boxGeometry args={[7, 0.5, 7]} />
+				<boxGeometry args={[8, 0.5, 7]} />
 				<meshStandardMaterial color='#222' />
 			</mesh>
+         <mesh position={[0, 0.15, 0]} receiveShadow>
+            <boxGeometry args={[9, 0.3, 7]} />
+            <meshStandardMaterial color='#222' />
+         </mesh>
 		</group>
 	)
 }

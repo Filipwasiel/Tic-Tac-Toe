@@ -31,7 +31,7 @@ const Field = ({ value, position }) => {
 			{/* Podstawa pola */}
 			<mesh receiveShadow position={[0, -0.1, 0]}>
 				<boxGeometry args={[FIELD_SIZE - 0.1, 0.2, FIELD_SIZE - 0.1]} />
-				<meshStandardMaterial color={value ? (value === 'X' ? '#ccc' : '#444') : 'white'} />
+				<meshStandardMaterial color={value ? (value === 'X' ? '#999' : '#444') : 'white'} />
 			</mesh>
 
 			{/* Znacznik X */}
